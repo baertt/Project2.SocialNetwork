@@ -3,16 +3,13 @@ package controllers;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
-import components.Message;
 import components.Users;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class NewPostController {
 
@@ -21,6 +18,9 @@ public class NewPostController {
 		Users users;
 		TimelineController timeline;
 		Users user;
+
+		int port = 8880;
+
 
 
 		@FXML
@@ -34,14 +34,21 @@ public class NewPostController {
 
 		Socket target;
 
+		List<String> currentUser;
+
+		ArrayList<String> ips;
+
 
 		@FXML
 		public void initialize(){}
 
-		public void importVariables(StartController start, TimelineController timeline) {
+		public void importVariables(StartController start, List<String> currentUser,
+				TimelineController timeline, ArrayList<String> ips) {
 			this.start = start;
 			this.users = start.getUsers();
 			this.timeline = timeline;
+			this.currentUser = currentUser;
+			this.ips = ips;
 		}
 
 		@FXML
@@ -55,23 +62,21 @@ public class NewPostController {
 			timeline.messageView.getItems().add(msg);
 			new Thread(() ->  {
 				try {
-					target = new Socket("10.253.199.8", 8880);
+					target = new Socket("10.253.199.8", port);
 				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				try {
 					timeline.send(target, msg);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}).start();
 
 			quitWindow();
+
 		}
 
 }

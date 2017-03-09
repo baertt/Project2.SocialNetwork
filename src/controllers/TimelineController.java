@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -10,26 +11,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ArrayBlockingQueue;
 
-import com.sun.corba.se.spi.activation.Server;
-
-import components.Message;
 import components.TimelinePosts;
-import components.UserInfo;
 import components.Users;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -39,23 +30,25 @@ public class TimelineController {
 
 	StartController start;
 	Users users;
-	TimelinePosts posts;
+	TimelinePosts posts = new TimelinePosts();
 	private ServerSocket accepter;
+	int port = 8880;
+
 	@FXML
 	ListView<String> messageView;
 	List<String> currentUser;
 	ArrayList<String> ips;
 
 	@FXML
-	public void initialize(){
+	public void initialize() throws FileNotFoundException{
 		fillPostInfo();
 		Thread serverThread = new Thread(() -> {
 			try {
-				accepter = new ServerSocket(8880);
+				accepter = new ServerSocket(port);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			System.out.println("Server: IP address: " + accepter.getInetAddress() + " (" + 8880 + ")");
+			System.out.println("Server: IP address: " + accepter.getInetAddress() + " (" + port + ")");
 			try{
 				for (;;) {
 					Socket s = accepter.accept();
@@ -162,11 +155,6 @@ public class TimelineController {
 
 			EditProfileController editProfile = (EditProfileController) loader.getController();
 			editProfile.importVariables(start, this, currentUser);
-			/*editProfile.prePopulate((currentUser.get(0).equals("null"))?"":currentUser.get(0),
-					(currentUser.get(2).equals("null"))?"":currentUser.get(2),
-							(currentUser.get(3).equals("null"))?"":currentUser.get(3),
-									(currentUser.get(4).equals("null"))?"":currentUser.get(4), "");
-*/
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
 			Image anotherIcon = new Image("https://lh3.ggpht.com/am4rWpEvZqhjEMJoD4Imp-tdKxtQpsa6uel50xRHegrxtIybnDdT8spmvLOH9wPZiIs=w300");
@@ -188,7 +176,7 @@ public class TimelineController {
 			AnchorPane root = (AnchorPane) loader.load();
 
 			NewPostController post = (NewPostController) loader.getController();
-			post.importVariables(start,this);
+			post.importVariables(start, currentUser, this, ips);
 
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
@@ -226,7 +214,8 @@ public class TimelineController {
 		return posts;
 	}
 
-	public void fillPostInfo(){
+	public void fillPostInfo() throws FileNotFoundException{
+		posts.readFromPostFile(this);
 		for(int i = 0; i < posts.size(); i++){
 			messageView.getItems().add(posts.getItem(i));
 		}
