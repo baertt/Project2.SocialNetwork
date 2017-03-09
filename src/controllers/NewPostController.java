@@ -72,7 +72,7 @@ public class NewPostController {
 					e.printStackTrace();
 				}
 				try {
-					timeline.send(target, msg);
+					timeline.send(target, newMessage.toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

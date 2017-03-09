@@ -101,7 +101,6 @@ public class CreateAccountController {
 	// Serialize UserOb object
 	// Takes a user to serialize their information
 	public void serialize(Users user) {
-		System.out.println("Serializing");
 		try {
 			FileOutputStream fileOut = new FileOutputStream("users.ser", false);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);

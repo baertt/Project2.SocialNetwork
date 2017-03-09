@@ -32,9 +32,9 @@ public class Users implements Serializable{
 	 */
 	public void add(String username, String password, String name, String phone, String email,
 					String bday, String host, String port /*String biography*/) throws IOException{
-		for(String user: users.keySet()){System.out.println(user + users.get(user).toString());}
+		//for(String user: users.keySet()){System.out.println(user + users.get(user).toString());}
 		users.put(username, new UserInfo(password, name, phone, email, bday /*biography*/, host, port));
-		for(String user: users.keySet()){System.out.println(user + users.get(user).toString());}
+		//for(String user: users.keySet()){System.out.println(user + users.get(user).toString());}
 		//(serialize change) writeToUserFile();
 	}
 

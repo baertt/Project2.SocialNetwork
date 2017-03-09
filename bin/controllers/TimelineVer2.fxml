@@ -14,7 +14,7 @@
          <children>
             <Pane prefHeight="43.0" prefWidth="503.0">
                <children>
-                  <MenuBar layoutX="4.0" layoutY="6.0" prefHeight="32.0" prefWidth="495.0">
+                  <MenuBar layoutX="4.0" layoutY="6.0" prefHeight="32.0" prefWidth="409.0">
                     <menus>
                         <Menu mnemonicParsing="false" text="Post">
                           <items>
@@ -26,9 +26,18 @@
                            <items>
                               <MenuItem mnemonicParsing="false" onAction="#viewProfile" text="View" />
                               <MenuItem mnemonicParsing="false" onAction="#openEditProfile" text="Edit" />
-                              <MenuItem mnemonicParsing="false" onAction="#signOut" text="Log Out" />
                            </items>
                         </Menu>
+                    </menus>
+                  </MenuBar>
+                  <MenuBar layoutX="413.0" layoutY="6.0" prefHeight="32.0" prefWidth="84.0">
+                    <menus>
+                      <Menu mnemonicParsing="false" text="Options">
+                           <items>
+                              <MenuItem mnemonicParsing="false" onAction="#signOut" text="Sign Out" />
+                              <MenuItem mnemonicParsing="false" text="About" />
+                           </items>
+                      </Menu>
                     </menus>
                   </MenuBar>
                </children>
