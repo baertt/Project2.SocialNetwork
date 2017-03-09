@@ -1,10 +1,8 @@
 package controllers;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.Hashtable;
 
 //import project2.AddActivityController;
 import components.Users;
@@ -31,11 +29,6 @@ public class StartController {
 	public void initialize(){
 		users = new Users();
 		deserialize();
-	}
-
-	@FXML
-	public void addExistingUsers() throws FileNotFoundException{
-		users.readFromUserFile(this);
 	}
 
 	public void deserialize() {

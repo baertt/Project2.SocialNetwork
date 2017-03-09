@@ -6,15 +6,10 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-import components.Message;
 import components.Users;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class NewPostController {
 
@@ -65,7 +60,7 @@ public class NewPostController {
 			timeline.messageView.getItems().add(newMessage.toString());
 			new Thread(() ->  {
 				try {
-					target = new Socket("10.253.193.153", port);
+					target = new Socket("10.253.199.8", port);
 				} catch (UnknownHostException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

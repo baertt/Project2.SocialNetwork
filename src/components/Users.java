@@ -15,7 +15,7 @@ import controllers.StartController;
 
 public class Users implements Serializable{
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private Hashtable<String, UserInfo> users = new Hashtable<String, UserInfo>();
@@ -69,11 +69,6 @@ public class Users implements Serializable{
 		while (in.hasNextLine()) {
 			String line = in.nextLine();
 			List<String> lineParts = Arrays.asList(line.split(","));
-			//System.out.println(lineParts);
-			//String[] parts = line.split(",");
-			//start.getUsers().users.put(parts[0], new UserInfo(parts[1], parts[2], parts[3], parts[4],
-			//						   parts[5]));
-
 			start.getUsers().users.put(lineParts.get(0), new UserInfo(lineParts.get(1), lineParts.get(2), lineParts.get(3),
 					lineParts.get(4), lineParts.get(5), lineParts.get(6), lineParts.get(7)));
 			//(parts[5].equals("null"))?null:LocalDate.parse(parts[5]))
@@ -112,7 +107,7 @@ public class Users implements Serializable{
 		//System.out.println(userInfoList);
 		return userInfoList;
 	}
-	
+
 	public UserInfo getCurrentUserInfo(String username) {
 		return users.get(username);
 	}
