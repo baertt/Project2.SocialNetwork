@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="306.0" prefWidth="466.0" style="-fx-background-color: #bdd5fc;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAccountController">
+   <children>
+      <Text layoutX="76.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create a Bubble Account">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <Separator layoutX="60.0" layoutY="46.0" prefHeight="4.0" prefWidth="352.0" />
+      <Text layoutX="26.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="username" layoutX="97.0" layoutY="63.0" prefHeight="25.0" prefWidth="115.0" />
+      <Text layoutX="29.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="password" layoutX="97.0" layoutY="101.0" prefHeight="25.0" prefWidth="115.0" />
+      <Button fx:id="createAccount" layoutX="101.0" layoutY="232.0" mnemonicParsing="false" onAction="#accountCreation" text="Create Account" />
+      <Button fx:id="cancel" layoutX="329.0" layoutY="232.0" mnemonicParsing="false" onAction="#close" text="Cancel" />
+      <TextField fx:id="name" layoutX="303.0" layoutY="62.0" prefHeight="25.0" prefWidth="115.0" promptText="John Smith" />
+      <Text layoutX="251.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#f80a0a" layoutX="216.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
+      <PasswordField fx:id="confirmPass" layoutX="303.0" layoutY="100.0" prefHeight="25.0" prefWidth="115.0" />
+      <Text layoutX="239.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password:" wrappingWidth="65.0">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <Text fill="#f80a0a" layoutX="420.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
+      <Text fill="#f80a0a" layoutX="216.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
+      <Text layoutX="18.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="250.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="30.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="32.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="birthday" layoutX="97.0" layoutY="143.0" prefHeight="31.0" prefWidth="130.0" promptText="01/01/1990" />
+      <Label fx:id="prompt" alignment="CENTER" layoutY="263.0" prefHeight="31.0" prefWidth="466.0" />
+      <TextField fx:id="phone" layoutX="304.0" layoutY="144.0" prefHeight="25.0" prefWidth="115.0" />
+      <TextField fx:id="email" layoutX="97.0" layoutY="188.0" prefHeight="31.0" prefWidth="318.0" />
+   </children>
+</AnchorPane>
