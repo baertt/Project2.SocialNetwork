@@ -56,7 +56,6 @@ public class EditProfileController  {
 		if (birthday.getValue() != null) {
 			currentUserInfo.setBday("" + birthday.getValue());
 		}
-		//currentUserInfo.setBday((birthday.getValue() == null)?:"" + birthday.getValue());
 		currentUserInfo.setPhone((phone.getText().equals(""))?"null":phone.getText());
 		currentUserInfo.setEmail((email.getText().equals(""))?"null":email.getText());
 		// if password field = confirm password field and when the user did not leave it blank.
@@ -72,7 +71,6 @@ public class EditProfileController  {
 	}
 
 	public void serialize(Users user) {
-		System.out.println("Serializing in EditProfile");
 		try {
 			FileOutputStream fileOut = new FileOutputStream("users.ser", false);
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -96,6 +94,9 @@ public class EditProfileController  {
 		this.timeline = timeline;
 	}
 
+	// PrePopulates the EditProfile GUI with the users information
+	// Inputs: 5 strings
+	// Literally just uses the strings to populate the profile textboxes
 	public void prePopulate(String username, String name, String phone,
 			String email, String bio) {
 		this.username.setText(username);
@@ -104,13 +105,6 @@ public class EditProfileController  {
 		this.email.setText(email);
 		this.bio.setText(bio);
 	}
-
-
-
-
-
-
-
 }
 
 

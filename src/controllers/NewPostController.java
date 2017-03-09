@@ -13,15 +13,12 @@ import javafx.scene.control.TextArea;
 
 public class NewPostController {
 
-
 		StartController start;
 		Users users;
 		TimelineController timeline;
 		Users user;
 
 		int port = 8880;
-
-
 
 		@FXML
 		Button cancel;
@@ -59,7 +56,8 @@ public class NewPostController {
 		@FXML
 		public void post() {
 			String msg = textArea.getText();
-			timeline.messageView.getItems().add(msg);
+			Message newMessage = new Message(currentUser.get(0), msg);
+			timeline.messageView.getItems().add(newMessage.toString());
 			new Thread(() ->  {
 				try {
 					target = new Socket("10.253.199.8", port);
