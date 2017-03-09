@@ -84,7 +84,6 @@ public class TimelineController {
 
 	}
 
-
 	void badNews(String what) {
 		Alert badNum = new Alert(AlertType.ERROR);
 		badNum.setContentText(what);
