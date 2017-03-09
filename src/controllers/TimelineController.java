@@ -15,6 +15,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import com.sun.corba.se.spi.activation.Server;
 
 import components.Message;
+import components.TimelinePosts;
 import components.UserInfo;
 import components.Users;
 import javafx.application.Platform;
@@ -38,17 +39,16 @@ public class TimelineController {
 
 	StartController start;
 	Users users;
+	TimelinePosts posts;
 	private ServerSocket accepter;
-
 	@FXML
 	ListView<String> messageView;
-
 	List<String> currentUser;
 	ArrayList<String> ips;
 
-
 	@FXML
 	public void initialize(){
+		fillPostInfo();
 		Thread serverThread = new Thread(() -> {
 			try {
 				accepter = new ServerSocket(8880);
@@ -103,6 +103,7 @@ public class TimelineController {
 		sockout.println(message);
 		sockout.flush();
 	}
+
 
 	@FXML
 	public void viewProfile(){
@@ -219,6 +220,21 @@ public class TimelineController {
 
 	public void setCurrentUserInfo() {
 		currentUser = users.getCurrentUser(currentUser.get(0));
+	}
+
+	public TimelinePosts getPosts() {
+		return posts;
+	}
+
+	public void fillPostInfo(){
+		for(int i = 0; i < posts.size(); i++){
+			messageView.getItems().add(posts.getItem(i));
+		}
+	}
+
+	@FXML
+	public ListView<String> getMessageView(){
+		return messageView;
 	}
 
 }

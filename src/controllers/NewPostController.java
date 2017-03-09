@@ -55,7 +55,7 @@ public class NewPostController {
 			timeline.messageView.getItems().add(msg);
 			new Thread(() ->  {
 				try {
-					target = new Socket("10.253.202.151", 8880);
+					target = new Socket("10.253.199.8", 8880);
 				} catch (UnknownHostException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
