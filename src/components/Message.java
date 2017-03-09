@@ -1,10 +1,8 @@
 package components;
 
-import java.io.Serializable;
-
 // This class is called a Bean -- Ryan Rose
 
-public class Message implements Serializable {
+public class Message {
 
 	@Override
 	public String toString() {

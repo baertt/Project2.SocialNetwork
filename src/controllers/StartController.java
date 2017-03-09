@@ -39,7 +39,6 @@ public class StartController {
 	}
 
 	public void deserialize() {
-		System.out.println("Deserializing in Start");
 		 try {
 	         FileInputStream fileIn = new FileInputStream("users.ser");
 	         ObjectInputStream in = new ObjectInputStream(fileIn);

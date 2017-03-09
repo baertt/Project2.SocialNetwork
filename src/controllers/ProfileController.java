@@ -39,6 +39,7 @@ public class ProfileController  {
 	Users users;
 	TimelineController timeline;
 	List<String> currentUser;
+	private Label whichLabel;
 
 
 	@FXML
@@ -47,11 +48,15 @@ public class ProfileController  {
 	}
 
 	public void setProfile() {
-		this.name.setText(currentUser.get(2).equals("null")?"":"Name: " + currentUser.get(2));
-		this.birthday.setText(currentUser.get(5).equals("null")?"":"Birthday: " + currentUser.get(5));
-		this.email.setText(currentUser.get(4).equals("null")?"":"Email: " + currentUser.get(4));
-		this.phoneNumber.setText(currentUser.get(3).equals("null")?"":"Phone Number: " + currentUser.get(3));
+		setLabel(whichLabel = name, 2, "");
+		setLabel(whichLabel = birthday, 5, "Birthday: ");
+		setLabel(whichLabel = email, 4, "Email: ");
+		setLabel(whichLabel = phoneNumber, 3, "Phone Number: ");
 		this.biography.setText("My username is " + currentUser.get(0) + "! Please view my profile!");
+	}
+
+	public void setLabel(Label whichLabel, int index, String doWhat){
+		this.whichLabel.setText(currentUser.get(index).equals("null")?"":doWhat + currentUser.get(index));
 	}
 
 	public void openEdit(){

@@ -67,15 +67,16 @@ public class EnterIPController {
 	// check IP input to see if it is the correct format
 	public boolean checkIPInput(String ipInput) {
 		String[] ipSplit = ipInput.split("\\.");
-		// if empty string, then return true since it is not required to fill all four text fields.
-		// We check in the addUsers() function for at least one input.
-		ifEquals(ipInput);
-		// if user enters a format that is not #.#.#.#
-		rightFormat(ipSplit);
-		// if a single segment of the ip address is not made out of number
-		notNumeric(ipSplit);
-		tooLong(ipSplit);
-		return true;
+		if(ipInput.equals("")){
+			return true;
+		}
+
+		if(rightFormat(ipSplit) == false ||
+				notNumeric(ipSplit) == false || tooLong(ipSplit) == false){
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	// Helper for checkIpInput
@@ -106,11 +107,6 @@ public class EnterIPController {
 		} else {
 			return true;
 		}
-	}
-
-	// Helper for checkIpInput
-	public boolean ifEquals(String ipInput){
-		return ipInput.equals("");
 	}
 
 	// check if string is numeric

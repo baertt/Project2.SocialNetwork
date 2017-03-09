@@ -18,15 +18,12 @@ import javafx.stage.Stage;
 
 public class NewPostController {
 
-
 		StartController start;
 		Users users;
 		TimelineController timeline;
 		Users user;
 
 		int port = 8880;
-
-
 
 		@FXML
 		Button cancel;
