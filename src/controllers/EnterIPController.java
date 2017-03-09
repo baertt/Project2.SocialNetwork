@@ -36,7 +36,7 @@ public class EnterIPController {
 	Users users;
 	List<String> currentUser;
 
-	ArrayList<String> ips = new ArrayList<String>();
+	ArrayList<String> ips = new ArrayList<String>(4);
 
 	public void importVariables(StartController start, List<String> currentUser) {
 		this.start = start;
@@ -67,31 +67,50 @@ public class EnterIPController {
 	// check IP input to see if it is the correct format
 	public boolean checkIPInput(String ipInput) {
 		String[] ipSplit = ipInput.split("\\.");
-
 		// if empty string, then return true since it is not required to fill all four text fields.
 		// We check in the addUsers() function for at least one input.
-		if (ipInput.equals("")) {
-			return true;
-		}
-
+		ifEquals(ipInput);
 		// if user enters a format that is not #.#.#.#
-		if (ipSplit.length != 4) {
-			prompt.setText("Please key in a correct IP Address including periods");
-			return false;
-		}
-
+		rightFormat(ipSplit);
 		// if a single segment of the ip address is not made out of number
-		if (!isNumeric(ipSplit[0]) || !isNumeric(ipSplit[1]) || !isNumeric(ipSplit[2]) || !isNumeric(ipSplit[3])) {
-			prompt.setText("Please key in an IP Address with all numbers (IPv4)");
-			return false;
-		}
+		notNumeric(ipSplit);
+		tooLong(ipSplit);
+		return true;
+	}
 
+	// Helper for checkIpInput
+	public boolean tooLong(String[] ipSplit){
 		if (ipSplit[0].length() > 3 || ipSplit[1].length() > 3 || ipSplit[2].length() > 3 || ipSplit[3].length() > 3) {
 			prompt.setText("Max length of each segment is 3!");
 			return false;
+		} else {
+			return true;
 		}
+	}
 
-		return true;
+	// Helper for checkIpInput
+	public boolean notNumeric(String[] ipSplit){
+		if (!isNumeric(ipSplit[0]) || !isNumeric(ipSplit[1]) || !isNumeric(ipSplit[2]) || !isNumeric(ipSplit[3])) {
+			prompt.setText("Please key in an IP Address with all numbers (IPv4)");
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	// Helper for checkIpInput
+	public boolean rightFormat(String[] ipSplit){
+		if (ipSplit.length != 4) {
+			prompt.setText("Please key in a correct IP Address including periods");
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	// Helper for checkIpInput
+	public boolean ifEquals(String ipInput){
+		return ipInput.equals("");
 	}
 
 	// check if string is numeric

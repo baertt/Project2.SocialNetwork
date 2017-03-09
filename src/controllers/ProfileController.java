@@ -43,14 +43,7 @@ public class ProfileController  {
 
 	@FXML
 	public void initialize(){
-//		List<String> currentUser = timeline.getCurrentUserInfo();
 		biography.setEditable(false);
-//		name.setText(currentUser.get(1));
-//		birthday.setText("Birthday:" + " " + currentUser.get(4));
-//		email.setText("Email: " + " " + currentUser.get(3));
-//		phoneNumber.setText("Phone Number: " + " " + currentUser.get(2));
-		//biography.setText(currentUser.getBiography());
-		//profilePic.setImage(getProfilePic());
 	}
 
 	public void setProfile() {
@@ -69,7 +62,6 @@ public class ProfileController  {
 
 			EditProfileController editProfile = (EditProfileController) loader.getController();
 			editProfile.importVariables(start, timeline, currentUser);
-			//editProfile.prePopulate();
 			editProfile.prePopulate((timeline.currentUser.get(0).equals("null"))?"":timeline.currentUser.get(0),
 					(timeline.currentUser.get(2).equals("null"))?"":timeline.currentUser.get(2),
 							(timeline.currentUser.get(3).equals("null"))?"":timeline.currentUser.get(3),

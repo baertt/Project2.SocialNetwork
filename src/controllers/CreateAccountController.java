@@ -24,6 +24,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class CreateAccountController {
+	/////////////////////////////////////////////////////////////////////////////////////
+
 	@FXML
 	TextField username;
 	@FXML
@@ -52,7 +54,8 @@ public class CreateAccountController {
 	StartController start;
 	Users users;
 
-	ArrayBlockingQueue<String> messages = new ArrayBlockingQueue<>(20);
+	/////////////////////////////////////////////////////////////////////////////////////
+
 
 	@FXML
 	public void initialize(){
@@ -94,8 +97,9 @@ public class CreateAccountController {
 			exc.printStackTrace();
 		}
 	}
-	
+
 	// Serialize UserOb object
+	// Takes a user to serialize their information
 	public void serialize(Users user) {
 		System.out.println("Serializing");
 		try {
@@ -128,6 +132,7 @@ public class CreateAccountController {
 	}
 
 
+	// Opens the signIn FXML
 	public void openSignIn(){
 
 		try {
@@ -160,6 +165,8 @@ public class CreateAccountController {
 	    stage.close();
 	}
 
+	// Literally just closes the entire program. Completely shuts down so there are no
+	// server errors when restarting.
 	@FXML
 	void close() {
 		System.exit(0);

@@ -40,6 +40,8 @@ public class TimelineController {
 	Users users;
 	private ServerSocket accepter;
 
+	int port = 8880;
+
 	@FXML
 	ListView<String> messageView;
 
@@ -51,11 +53,11 @@ public class TimelineController {
 	public void initialize(){
 		Thread serverThread = new Thread(() -> {
 			try {
-				accepter = new ServerSocket(8880);
+				accepter = new ServerSocket(port);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			System.out.println("Server: IP address: " + accepter.getInetAddress() + " (" + 8880 + ")");
+			System.out.println("Server: IP address: " + accepter.getInetAddress() + " (" + port + ")");
 			try{
 				for (;;) {
 					Socket s = accepter.accept();
@@ -161,11 +163,6 @@ public class TimelineController {
 
 			EditProfileController editProfile = (EditProfileController) loader.getController();
 			editProfile.importVariables(start, this, currentUser);
-			/*editProfile.prePopulate((currentUser.get(0).equals("null"))?"":currentUser.get(0),
-					(currentUser.get(2).equals("null"))?"":currentUser.get(2),
-							(currentUser.get(3).equals("null"))?"":currentUser.get(3),
-									(currentUser.get(4).equals("null"))?"":currentUser.get(4), "");
-*/
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
 			Image anotherIcon = new Image("https://lh3.ggpht.com/am4rWpEvZqhjEMJoD4Imp-tdKxtQpsa6uel50xRHegrxtIybnDdT8spmvLOH9wPZiIs=w300");
@@ -187,7 +184,7 @@ public class TimelineController {
 			AnchorPane root = (AnchorPane) loader.load();
 
 			NewPostController post = (NewPostController) loader.getController();
-			post.importVariables(start,this);
+			post.importVariables(start, currentUser, this, ips);
 
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);

@@ -31,14 +31,13 @@ public class StartController {
 	public void initialize(){
 		users = new Users();
 		deserialize();
-		//addExistingUsers();
 	}
 
 	@FXML
 	public void addExistingUsers() throws FileNotFoundException{
 		users.readFromUserFile(this);
 	}
-	
+
 	public void deserialize() {
 		System.out.println("Deserializing in Start");
 		 try {
@@ -56,7 +55,7 @@ public class StartController {
 	         return;
 	      }
 	}
-	
+
 	@FXML
 	public void openSignIn(){
 		try {
@@ -70,12 +69,12 @@ public class StartController {
 
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
-			
+
 			secondStage.setOnCloseRequest(e -> {
 			        Platform.exit();
 			        System.exit(0);
 			    });
-			
+
 			Image anotherIcon = new Image("https://lh3.ggpht.com/am4rWpEvZqhjEMJoD4Imp-tdKxtQpsa6uel50xRHegrxtIybnDdT8spmvLOH9wPZiIs=w300");
 			secondStage.getIcons().add(anotherIcon);
 		    secondStage.setTitle("Welcome to Bubble!");
@@ -101,12 +100,12 @@ public class StartController {
 
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
-			
+
 			secondStage.setOnCloseRequest(e -> {
 			        Platform.exit();
 			        System.exit(0);
 			    });
-			
+
 			Image anotherIcon = new Image("https://lh3.ggpht.com/am4rWpEvZqhjEMJoD4Imp-tdKxtQpsa6uel50xRHegrxtIybnDdT8spmvLOH9wPZiIs=w300");
 			secondStage.getIcons().add(anotherIcon);
 		    secondStage.setTitle("Welcome to Bubble!");
@@ -123,7 +122,7 @@ public class StartController {
 	public Users getUsers() {
 		return users;
 	}
-	
+
 	public void setUsers(Users newUsers) {
 		users = newUsers;
 	}
