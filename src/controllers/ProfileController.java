@@ -44,9 +44,11 @@ public class ProfileController  {
 
 	@FXML
 	public void initialize(){
+		// application user should not be able to edit bio unless they are editing their profile
 		biography.setEditable(false);
 	}
 
+	// Sets the users profile to display their personal information.
 	public void setProfile() {
 		setLabel(whichLabel = name, 2, "");
 		setLabel(whichLabel = birthday, 5, "Birthday: ");
@@ -55,18 +57,24 @@ public class ProfileController  {
 		this.biography.setText("My username is " + currentUser.get(0) + "! Please view my profile!");
 	}
 
+	// Helper method for setProfile
+	// Inputs: Label, index, string
+	// Sets the label entered to the info taken from the list of information using the index
+	// to get the info from the list. The string adds a description to the info for their profile.
 	public void setLabel(Label whichLabel, int index, String doWhat){
 		this.whichLabel.setText(currentUser.get(index).equals("null")?"":doWhat + currentUser.get(index));
 	}
 
 	public void openEdit(){
 		try {
+
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(GuiMain.class.getResource("EditInfo.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
 
 			EditProfileController editProfile = (EditProfileController) loader.getController();
 			editProfile.importVariables(start, timeline, currentUser);
+
 			editProfile.prePopulate((timeline.currentUser.get(0).equals("null"))?"":timeline.currentUser.get(0),
 					(timeline.currentUser.get(2).equals("null"))?"":timeline.currentUser.get(2),
 							(timeline.currentUser.get(3).equals("null"))?"":timeline.currentUser.get(3),

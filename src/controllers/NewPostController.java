@@ -61,7 +61,8 @@ public class NewPostController {
 		@FXML
 		public void post() {
 			String msg = textArea.getText();
-			timeline.messageView.getItems().add(msg);
+			Message newMessage = new Message(currentUser.get(0), msg);
+			timeline.messageView.getItems().add(newMessage.toString());
 			new Thread(() ->  {
 				try {
 					target = new Socket("10.253.193.153", port);

@@ -116,7 +116,7 @@ public class EnterIPController {
 	}
 
 	public void openTimeline(){
-		System.out.println("HERE");
+		//System.out.println("HERE");
 		try {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(GuiMain.class.getResource("TimelineVer2.fxml"));
@@ -136,7 +136,6 @@ public class EnterIPController {
 
 			Image anotherIcon = new Image("https://lh3.ggpht.com/am4rWpEvZqhjEMJoD4Imp-tdKxtQpsa6uel50xRHegrxtIybnDdT8spmvLOH9wPZiIs=w300");
             secondStage.getIcons().add(anotherIcon);
-			//secondStage.getIcons().add(new Image(imgLink));
 		    secondStage.setTitle(currentUser.get(0));
 			secondStage.setScene(scene);
 			secondStage.show();

@@ -37,7 +37,7 @@ public class Message {
 			return false;
 		return true;
 	}
-	public Message(String body, String name) {
+	public Message(String name, String body) {
 		super();
 		this.body = body;
 		this.name = name;
