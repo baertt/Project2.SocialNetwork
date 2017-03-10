@@ -74,7 +74,13 @@ public class TimelineController {
 			try {
 				String msg = sockin.readLine();
 				Platform.runLater(() -> {
-						messageView.getItems().add(msg);
+					messageView.getItems().add(msg);
+					try {
+						posts.add(msg);
+					} catch (FileNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				});
 			} catch (Exception e) {
 				Platform.runLater(() -> badNews(e.getMessage()));

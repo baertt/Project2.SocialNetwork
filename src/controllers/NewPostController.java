@@ -1,11 +1,13 @@
 package controllers;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
+import components.Message;
 import components.Users;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -58,9 +60,15 @@ public class NewPostController {
 			String msg = textArea.getText();
 			Message newMessage = new Message(currentUser.get(0), msg);
 			timeline.messageView.getItems().add(newMessage.toString());
+			try {
+				timeline.posts.add(newMessage.toString());
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			new Thread(() ->  {
 				try {
-					target = new Socket("10.253.199.8", port);
+					target = new Socket("10.253.193.153", port);
 				} catch (UnknownHostException e) {
 					e.printStackTrace();
 				} catch (IOException e) {

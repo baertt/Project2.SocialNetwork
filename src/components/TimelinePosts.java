@@ -19,8 +19,9 @@ public class TimelinePosts {
 		return posts.get(index);
 	}
 
-	public void add(String post){
+	public void add(String post) throws FileNotFoundException{
 		posts.add(post);
+		writeToPostFile();
 	}
 
 	public void delete(String post){
@@ -40,12 +41,12 @@ public class TimelinePosts {
 		in.close();
 	}
 
-	public void writeToPostFile(TimelineController timeline) throws FileNotFoundException{
+	public void writeToPostFile() throws FileNotFoundException{
 		PrintWriter out = new PrintWriter("posts.txt");
-		/*for(int i = 0; i < timeline.g
-				out.println(timeline.getPosts().getItem(i));
+		for(int i = 0; i < posts.size(); i++){
+			out.println(posts.get(i));
 		}
-		out.close();*/
+		out.close();
 	}
 }
 
