@@ -1,14 +1,10 @@
 package controllers;
 
-
-import java.time.LocalDate;
 import java.util.List;
 
-import javafx.event.Event;
-//import Objects.UserInfo;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import components.UserInfo;
+import components.Users;
+import javafx.fxml.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -16,54 +12,67 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import components.UserInfo;
-import components.Users;
 
-public class ProfileController  {
+public class Profile2Controller {
 	@FXML
 	Button edit;
 	@FXML
-	TextArea biography;
-	@FXML
-	ImageView profilePic;
+	TextArea bio;
 	@FXML
 	Label name;
 	@FXML
-	Label birthday;
+	Label bday;
 	@FXML
 	Label email;
 	@FXML
-	Label phoneNumber;
+	Label phone;
+	@FXML
+	Tab username;
+
+	String user;
+	UserInfo info;
 
 	StartController start;
 	Users users;
 	TimelineController timeline;
 	List<String> currentUser;
-	private Label whichLabel;
-
+	//private Label whichLabel;
 
 	@FXML
 	public void initialize(){
+		//fillUserProfiles();
 		// application user should not be able to edit bio unless they are editing their profile
-		biography.setEditable(false);
+		bio.setEditable(false);
 	}
+
+	/*private void fillUserProfiles() {
+		for(String user:timeline.users.getUsers().keySet()){
+
+		}
+	}*/
 
 	// Sets the users profile to display their personal information.
 	public void setProfile() {
-		setLabel(whichLabel = name, 2, "");
-		setLabel(whichLabel = birthday, 5, "Birthday: ");
+		username.setText(user);
+		name.setText(info.getName());
+		bday.setText(info.getBday());
+		email.setText(info.getEmail());
+		phone.setText(info.getPhone());
+		bio.setText(info.getBiography());
+		/*setLabel(whichLabel = name, 2, "");
+		setLabel(whichLabel = bday, 5, "Birthday: ");
 		setLabel(whichLabel = email, 4, "Email: ");
-		setLabel(whichLabel = phoneNumber, 3, "Phone Number: ");
-		this.biography.setText(currentUser.get(6));
+		setLabel(whichLabel = phone, 3, "Phone Number: ");
+		this.bio.setText(currentUser.get(6));*/
 	}
 
 	// Helper method for setProfile
 	// Inputs: Label, index, string
 	// Sets the label entered to the info taken from the list of information using the index
 	// to get the info from the list. The string adds a description to the info for their profile.
-	public void setLabel(Label whichLabel, int index, String doWhat){
+/*	public void setLabel(Label whichLabel, int index, String doWhat){
 		this.whichLabel.setText(currentUser.get(index).equals("null")?"":doWhat + currentUser.get(index));
-	}
+	}*/
 
 	public void openEdit(){
 		try {
@@ -99,18 +108,16 @@ public class ProfileController  {
 		openEdit();
 	}
 
-	public void importVariables(StartController start, TimelineController timeline, List<String> currentUser) {
+	public void importVariables(StartController start, TimelineController timeline, String username, UserInfo info) {
 		this.start = start;
 		this.users = start.getUsers();
 		this.timeline = timeline;
-		this.currentUser = currentUser;
+		this.user = username;
+		this.info = info;
 	}
 
 	public void closeProfile() {
 	    Stage stage = (Stage) edit.getScene().getWindow();
 	    stage.close();
 	}
-
 }
-
-

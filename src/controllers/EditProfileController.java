@@ -50,7 +50,7 @@ public class EditProfileController  {
 
 	@FXML
 	public void saveChanges(){
-		// get UserInfo
+		/*// get UserInfo
 		UserInfo currentUserInfo = users.getCurrentUserInfo(username.getText());
 		currentUserInfo.setName((name.getText().equals(""))?"null":name.getText());
 		if (birthday.getValue() != null) {
@@ -63,7 +63,15 @@ public class EditProfileController  {
 		if (password.getText().equals(confirmPass) && !password.getText().equals("")) {
 			currentUserInfo.setPassword(password.getText());
 		}
-		timeline.setCurrentUserInfo();
+		timeline.setCurrentUserInfo();*/
+		String user = currentUser.get(0);
+		UserInfo info = timeline.users.getCurrentUserInfo(user);
+
+		info.setName(name.getText());
+		info.setPhone(phone.getText());
+		info.setEmail(email.getText());
+		info.setBday(birthday.toString());
+		info.setBiography(bio.getText());
 
 		serialize(users);
 		closeEdit();
@@ -92,18 +100,18 @@ public class EditProfileController  {
 		this.start = start;
 		this.users = start.getUsers();
 		this.timeline = timeline;
+		this.currentUser = currentUser;
 	}
 
 	// PrePopulates the EditProfile GUI with the users information
 	// Inputs: 5 strings
 	// Literally just uses the strings to populate the profile textboxes
-	public void prePopulate(String username, String name, String phone,
-			String email, String bio) {
-		this.username.setText(username);
-		this.name.setText(name);
-		this.phone.setText(phone);
-		this.email.setText(email);
-		this.bio.setText(bio);
+	public void prePopulate() {
+		this.username.setText(currentUser.get(0).equals("null")?"":currentUser.get(0));
+		this.name.setText(currentUser.get(2).equals("null")?"":currentUser.get(2));
+		this.phone.setText(currentUser.get(3).equals("null")?"":currentUser.get(3));
+		this.email.setText(currentUser.get(4).equals("null")?"":currentUser.get(4));
+		this.bio.setText("");
 	}
 }
 

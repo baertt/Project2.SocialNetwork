@@ -21,6 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -110,6 +112,22 @@ public class TimelineController {
 
 	public void openProfile(){
 		try {
+			/*FXMLLoader loader2 = new FXMLLoader();
+			loader2.setLocation(GuiMain.class.getResource("Tabs.fxml"));
+			TabPane root2 = (TabPane) loader2.load();
+
+			for(String user:users.getUsers().keySet()){
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(GuiMain.class.getResource("Profies2.fxml"));
+				Profile2Controller profiles = (Profile2Controller) loader.getController();
+				profiles.importVariables(start, this, user, users.getUsers().get(user));
+				profiles.setProfile();
+				Tab info = profiles.username;
+				root2.getTabs().add(info);
+				for(int i = 0; i<root2.getTabs().size(); i++){
+					System.out.println(root2.getTabs().get(i).getText());
+				}
+			}*/
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(GuiMain.class.getResource("Profile.fxml"));
 			AnchorPane root = (AnchorPane) loader.load();
@@ -120,9 +138,10 @@ public class TimelineController {
 
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
+			//Scene scene = new Scene(root2);
 			Image anotherIcon = new Image("https://lh3.ggpht.com/am4rWpEvZqhjEMJoD4Imp-tdKxtQpsa6uel50xRHegrxtIybnDdT8spmvLOH9wPZiIs=w300");
 			secondStage.getIcons().add(anotherIcon);
-		    secondStage.setTitle(currentUser.get(0));
+		    secondStage.setTitle("Profiles");
 			secondStage.setScene(scene);
 			secondStage.show();
 
@@ -160,6 +179,8 @@ public class TimelineController {
 
 			EditProfileController editProfile = (EditProfileController) loader.getController();
 			editProfile.importVariables(start, this, currentUser);
+			editProfile.prePopulate();
+
 			Stage secondStage = new Stage();
 			Scene scene = new Scene(root);
 			Image anotherIcon = new Image("https://lh3.ggpht.com/am4rWpEvZqhjEMJoD4Imp-tdKxtQpsa6uel50xRHegrxtIybnDdT8spmvLOH9wPZiIs=w300");

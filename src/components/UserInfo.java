@@ -9,7 +9,7 @@ public class UserInfo implements Serializable {
 	private String password, name, phone, email, biography, bday, host, port;
 	private Object avatar;
 
-	public UserInfo(String password, String name, String phone, String email, String bday, String host, String port /*String biography*/){//, Object object) {
+	public UserInfo(String password, String name, String phone, String email, String bday, String host, String port){
 		this.password = password;
 		this.name = name;
 		this.bday = bday;
@@ -17,17 +17,30 @@ public class UserInfo implements Serializable {
 		this.email = email;
 		this.host = host;
 		this.port = port;
-		//this.biography = biography; comment out because haven't implement in GUI
-		//this.avatar = object;
+		this.biography = "I am lame and have an empty bio.";
 	}
 
 
 	public String getPassword(){return this.password;}
-	public String getName(){return this.name;}
-	public String getPhone(){return this.phone;}
-	public String getEmail(){return this.email;}
-	public String getBday(){return this.bday;}
-	public String getBiography(){return this.biography;}
+	public String getName(){
+		//if(name == null) this.name = "";
+		return this.name;
+	}
+	public String getPhone(){
+		////if(phone == null) this.phone = "";
+		return this.phone;
+	}
+	public String getEmail(){
+		//if(email == null) this.email = "";
+		return this.email;
+	}
+	public String getBday(){
+		if(bday == null) return "";
+		return bday.toString();
+	}
+	public String getBiography(){;
+		return this.biography;
+	}
 	public Object getAvatar(){return this.avatar;}
 	public String getHost(){return this.host;}
 	public String getPort(){return this.port;}
@@ -70,7 +83,7 @@ public class UserInfo implements Serializable {
 
 	@Override
 	public String toString(){
-		return(String.format("%s,%s,%s,%s,%s,%s,%s", password, name, phone, email, (bday == null ? "" : bday.toString()), host, port));
+		return(String.format("%s,%s,%s,%s,%s,%s,%s,%s", password, name, phone, email, (bday == null ? "" : bday.toString()), biography, host, port));
 	}
 
 	@Override

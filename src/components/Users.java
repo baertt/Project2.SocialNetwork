@@ -58,8 +58,6 @@ public class Users implements Serializable{
 		out.close();
 	}
 
-
-
 	public Hashtable<String, UserInfo> getUsers(){
 		return users;
 	}
@@ -103,8 +101,7 @@ public class Users implements Serializable{
 
 	public List<String> getCurrentUser(String username) {
 		UserInfo info = users.get(username);
-		List<String> userInfoList = Arrays.asList((username + "," + info.toString()).split(",")); //(username + "," + info.toString()).split(",")
-		//System.out.println(userInfoList);
+		List<String> userInfoList = Arrays.asList((username + "," + info.toString()).split(","));
 		return userInfoList;
 	}
 
